@@ -1,69 +1,138 @@
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="min-h-screen bg-stone-50 text-stone-900">
+      <header className="border-b border-stone-200 bg-white">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-5">
+          <Link
+            href="/"
+            aria-label="Duck Store home"
+            className="relative block h-16 w-48 shrink-0 sm:h-20 sm:w-64"
           >
             <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+              src="/images/duck-logo-horizontal.png"
+              alt="Wade’s Duck Store"
+              fill
+              sizes="(min-width: 640px) 256px, 192px"
+              className="object-contain object-left"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </Link>
+
+          <nav
+            aria-label="Main navigation"
+            className="flex gap-6 text-sm font-semibold"
           >
-            Documentation
-          </a>
+            <a href="#shop" className="hover:underline">
+              Shop
+            </a>
+            <Link href="/play" className="hover:underline">
+              Wade’s Wild Ride
+            </Link>
+          </nav>
         </div>
-      </main>
-    </div>
+      </header>
+
+      <section className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-2 md:items-center">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-widest text-stone-600">
+            Meet your next copilot
+          </p>
+
+          <h1 className="mt-4 text-5xl font-black leading-tight md:text-7xl">
+            Small duck.
+            <br />
+            Big adventure.
+          </h1>
+
+          <p className="mt-6 max-w-lg text-lg leading-relaxed text-stone-600">
+            A little personality for your next adventure. Meet Wade, your new
+            copilot, and join him for a wild ride.
+          </p>
+        </div>
+
+        <div className="relative isolate flex aspect-square items-center justify-center overflow-hidden rounded-3xl bg-yellow-300 p-10">
+          {/* Decorative background */}
+          <Image
+            src="/images/duck-background.png"
+            alt=""
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="-z-10 object-cover"
+          />
+
+          {/* Keep the logo readable over the artwork */}
+          <div className="relative aspect-square w-full max-w-80 rounded-3xl bg-white/95 p-6 shadow-xl">
+            <div className="relative h-full w-full">
+              <Image
+                src="/images/duck-logo-vertical.png"
+                alt="West Hills Wade"
+                fill
+                sizes="(min-width: 768px) 272px, 70vw"
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="shop" className="scroll-mt-8 border-t border-stone-200">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <p className="text-sm font-bold uppercase tracking-widest text-stone-600">
+            Bring Wade along
+          </p>
+
+          <div className="mt-6 grid gap-8 rounded-3xl border border-stone-200 bg-white p-8 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <h2 className="text-3xl font-black">
+                Your next adventure buddy.
+              </h2>
+
+              <p className="mt-4 max-w-xl leading-relaxed text-stone-600">
+                Make room for Wade. A little West Hills personality for your
+                dashboard, desk, or wherever the road takes you.
+              </p>
+
+              <p className="mt-3 text-sm text-stone-500">
+                Product photos, pricing, and purchase details coming soon.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-start gap-3">
+              <button
+                type="button"
+                disabled
+                className="cursor-not-allowed rounded-full bg-stone-200 px-8 py-4 font-bold text-stone-600"
+              >
+                Purchasing coming soon
+              </button>
+
+              <p className="text-sm text-stone-500">
+                Check back for availability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="game" className="scroll-mt-8 bg-stone-900 text-white">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <p className="text-sm font-bold uppercase tracking-widest text-stone-400">
+            Coming soon
+          </p>
+
+          <h2 className="mt-3 text-4xl font-black">Wade’s Wild Ride</h2>
+
+          <p className="mt-4 max-w-xl leading-relaxed text-stone-300">
+            Jump into Wade’s Jeep, explore a colorful little town, and collect
+            ducks before the clock runs out.
+          </p>
+        </div>
+      </section>
+
+      <footer className="mx-auto max-w-6xl px-6 py-8 text-sm text-stone-600">
+        Wade’s Duck Store · Adventure starts with a duck.
+      </footer>
+    </main>
   );
 }

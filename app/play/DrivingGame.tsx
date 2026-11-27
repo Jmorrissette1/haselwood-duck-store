@@ -47,6 +47,26 @@ function Box({
 function Jeep() {
   return (
     <group>
+      {/* Wade's brown cowboy hat */}
+      <group position={[-0.45, 2.4, -0.02]} rotation={[0, 0, -0.08]}>
+        {/* Wide oval brim */}
+        <mesh scale={[1.15, 1, 0.9]} castShadow>
+          <cylinderGeometry args={[0.4, 0.4, 0.055, 16]} />
+          <meshStandardMaterial color="#79502e" roughness={1} flatShading />
+        </mesh>
+
+        {/* Tapered crown */}
+        <mesh position={[0, 0.16, 0]} scale={[1, 1, 0.85]} castShadow>
+          <cylinderGeometry args={[0.18, 0.24, 0.29, 8]} />
+          <meshStandardMaterial color="#895b35" roughness={1} flatShading />
+        </mesh>
+
+        {/* Dark leather hatband */}
+        <mesh position={[0, 0.055, 0]} scale={[1, 1, 0.85]} castShadow>
+          <cylinderGeometry args={[0.235, 0.245, 0.055, 12]} />
+          <meshStandardMaterial color="#3f291c" roughness={1} />
+        </mesh>
+      </group>
       {/* Chassis, body, and hood */}
       <Box position={[0, 0.65, 0]} size={[2, 0.35, 3.7]} color="#292b29" />
       <Box position={[0, 1.05, 0]} size={[2.1, 0.65, 3.5]} color="#eab52c" />
@@ -312,7 +332,7 @@ function DrivingScene({
     // Look a little ahead in the direction the Jeep is traveling.
     target.current.set(
       vehicle.x - Math.sin(vehicle.angle) * vehicle.speed * 0.18,
-      0,
+      groundHeight,
       vehicle.z - Math.cos(vehicle.angle) * vehicle.speed * 0.18,
     );
 

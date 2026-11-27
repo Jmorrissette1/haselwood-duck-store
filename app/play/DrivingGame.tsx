@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type RefObject } from "react";
 import DuckCollectibles, { TOTAL_DUCKS } from "./DuckCollectibles";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Group, OrthographicCamera, Vector3 } from "three";
-import Terrain, { ROCKS, TREES, getGroundHeight, isOnTrail } from "./World";
+import Terrain, { OBSTACLES, TREES, getGroundHeight, isOnTrail } from "./World";
 
 type Point3 = [number, number, number];
 
@@ -277,8 +277,7 @@ function DrivingScene({
       const nextX = vehicle.x - Math.sin(vehicle.angle) * vehicle.speed * dt;
       const nextZ = vehicle.z - Math.cos(vehicle.angle) * vehicle.speed * dt;
 
-      // Simple circular collision checks for this first prototype.
-      const hitsRock = ROCKS.some(
+      const hitsObstacle = OBSTACLES.some(
         ([x, z, radius]) => Math.hypot(nextX - x, nextZ - z) < radius + 1.8,
       );
 
@@ -286,7 +285,7 @@ function DrivingScene({
         ([x, z, scale]) => Math.hypot(nextX - x, nextZ - z) < 0.5 * scale + 1.8,
       );
 
-      if (hitsRock || hitsTree || Math.hypot(nextX, nextZ) > 57) {
+      if (hitsObstacle || hitsTree || Math.hypot(nextX, nextZ) > 57) {
         vehicle.speed = 0;
       } else {
         vehicle.x = nextX;

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import { Color, Float32BufferAttribute, PlaneGeometry } from "three";
+import BaseCamp, { CAMP_OBSTACLES } from "./BaseCamp";
 
 type Point2 = [number, number];
 type Point3 = [number, number, number];
@@ -108,6 +109,8 @@ export const ROCKS: Point3[] = [
   [-10, -6, 2.2],
 ];
 
+export const OBSTACLES: Point3[] = [...ROCKS, ...CAMP_OBSTACLES];
+
 // X, Z, scale. Keep the main trails free of tree trunks.
 const TREE_CANDIDATES: Point3[] = [
   ...Array.from({ length: 32 }, (_, index): Point3 => {
@@ -213,17 +216,7 @@ export default function Terrain() {
       ))}
 
       {/* Yellow base-camp marker. */}
-      <group position={[-6, getGroundHeight(-6, 32), 32]}>
-        <mesh position={[0, 2.2, 0]} castShadow>
-          <boxGeometry args={[0.25, 4.4, 0.25]} />
-          <meshStandardMaterial color="#71513b" />
-        </mesh>
-
-        <mesh position={[1.1, 3.8, 0]} castShadow>
-          <boxGeometry args={[2.2, 1.1, 0.12]} />
-          <meshStandardMaterial color="#ffda45" />
-        </mesh>
-      </group>
+      <BaseCamp groundHeight={getGroundHeight} />
     </group>
   );
 }
